@@ -6,7 +6,7 @@ Characterization of human movement and understanding of corresponding muscle coo
 ### Problem Definition
 The [public dataset](http://www.epic.gatech.edu/opensource-biomechanics-camargo-et-al/) for the project has been acquired by EPIC Lab at Georgia Tech. The dataset contains 3-dimensional biomechanical and wearable sensor data (EMG - 11 muscles, Goniometer (GON) - 3 body parts, Inertial Measurement Unit (IMU) - 4 body parts) along with the kinematic and kinetic profiles of joint biomechanics (as a function of gait phase) from right side of the body of 22 young and able-bodied adults for 5 locomotion modes (e.g. level-ground or treadmill walking, stair-ascent, stair-descent, ramp-ascent and ramp-descent), multiple terain conidtions for each mode (walking speed, stair height, and ramp inclination) and multiple trials [1].
 
-<img src="https://user-images.githubusercontent.com/51376814/121802345-c82b8780-cc09-11eb-8c00-99bc77425916.png" alt="hi" class="inline"/>
+<img src="https://github.com/locomotion-classification/locomotion-classification.github.io/blob/main/Project%20Description.svg" alt="hi" class="inline"/>
 
 In this project, we will develop subject-dependent classicifation models for 6 possible modes (standing and 5 locomotion modes) regardless of their terrain conditions based on biomechanics data captured from lower limb using EMG, GON, IMU, Inverse Dynamics (ID), Inverse Kinematics (IK), Joint Power (JP), Force Plate (FP) etc. from able-bodied particiIMUpants for a single adult (e.g. AB21 from the dataset).
 
