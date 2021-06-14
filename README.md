@@ -1,4 +1,3 @@
-# locomotion-classification.github.io
 ## Locomotion Mode Classification based on Wearable Sensor data from Lower Limb Biomechanics 
 
 ### Introduction
