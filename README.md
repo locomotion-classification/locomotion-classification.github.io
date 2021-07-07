@@ -43,7 +43,7 @@ In this project, we will use the aforementioned sesnor and biomechanical data as
 
 ### 6.4 CNN
 
-<img src="images\CNN_arch.png" class="img-responsive" alt="Project">
+<img src="images\CNN_arch.svg" class="img-responsive" alt="Project">
 
 <img src="images\CNN_acc.png" class="img-responsive" alt="Project"> <img src="images\CNN_loss.png" class="img-responsive" alt="Project">\
 
