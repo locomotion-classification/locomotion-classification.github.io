@@ -47,10 +47,14 @@ In this project, we will use the aforementioned sesnor and biomechanical data as
 The broader impact of this project would be future development of robotic assistive devices and active prostheses for targeted rehabilitation methods beyond clinical settings, and improvement of biomimetic controllers that better adapt to terrain conditions (practical scenarios).
 
 ## 8 Contributions
-Ian Thomas Cullen: Data Cleaning, Data Pre-processing (Signal Conditioning using Windowed Moving Average), Feature Engineering (calculating max/min, mean, std from raw features) 
-Kennedy A Lee: Convolutional Neural Network (CNN)
-Imran Ali Shah: Principal Component Analysis (PCA), k-Means Clustering 
-Anupam Golder: Data Merging (for different environments and different locomotion modes), Data Cleaning, Feature Scoring (Using Minimum Redundancy Maximum Relevance scoring), MLP on raw data
+
+Ian Thomas Cullen: Data Cleaning, Data Pre-processing (Signal Conditioning using Windowed Moving Average), Feature Engineering (calculating max/min, mean, std from raw features), Video Editing and Presentation for Proposal
+
+Kennedy A Lee: Convolutional Neural Network (CNN) on raw data, Hyperparameter Tuning
+
+Imran Ali Shah: Principal Component Analysis (PCA), k-Means Clustering, Video Editing and Presentation for Proposal
+
+Anupam Golder: Data Merging (for different environments and different locomotion modes), Data Cleaning, Feature Scoring (Using Minimum Redundancy Maximum Relevance scoring), MLP on raw data, Github Page Editing
 
 ## 9 References
 1. Camargo, J., Ramanathan, A., Flanagan, W., & Young, A. (2021). A comprehensive, open-source dataset of lower limb biomechanics in multiple conditions of stairs, ramps, and level-ground ambulation and transitions. Journal of Biomechanics, 119, 110320.
