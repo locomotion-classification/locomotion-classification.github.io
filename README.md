@@ -23,6 +23,10 @@ The study in [1] focused only on linear relationships between variables and terr
 
 #### 4.3.1 Signal Conditioning
 
+<img src="images\window_even.PNG" class="img-responsive" alt="Project"> 
+
+<img src="images\window_overlap.PNG" class="img-responsive" alt="Project"> 
+
 #### 4.3.2 Feature Engineering
 
 <img src="images\MRMR_raw.svg" class="img-responsive" alt="Project"> 
