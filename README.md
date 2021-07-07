@@ -61,13 +61,13 @@ In this project, we will use the aforementioned sesnor and biomechanical data as
 
 ### 6.2 k-Means Clustering
 
-### 6.4 Linear Discriminant Analysis (LDA)
+### 6.3 Linear Discriminant Analysis (LDA)
 
 Random permutation has been utilized to randomly split the raw data into training_data (80% of total) and testing_data (20% of total). This **LDA** achieves **68.41%** test accuracy on raw data, compared to 14.2% which would be for random class assignments, and thus contains significant results on just raw data.
 
 After performing **PCA**, **LDA** achieves **68.41%** test accuracy with no dimensionality reduction, so, PCA without pruning does not improve accuracy for LDA.
 
-### 6.3 MLP
+### 6.4 MLP
 
 <p align="center">
   <img src="images\MLP_arch.svg" class="img-responsive" alt="Project"  width="400" height="400"> 
@@ -86,7 +86,7 @@ But **PCA-MLP** achieves **99.17% test accuracy** with no dimensionality reducti
 </p>
  
 
-### 6.4 CNN
+### 6.5 CNN
 
 <p align="center">
   <img src="images\CNN_arch2.svg" class="img-responsive" alt="Project" width="800" height="800"> 
