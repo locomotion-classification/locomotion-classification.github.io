@@ -24,8 +24,13 @@ The study in [1] focused only on linear relationships between variables and terr
 #### 4.3.1 Signal Conditioning
 
 #### 4.3.2 Feature Engineering
+##### 4.3.2.1 Minimum Relevance Maximum Redundancy (MRMR) Scoring
+
+All of raw data and labels go into the algorithm which scores features based on their relevance to class labels.
 
 <img src="images\MRMR_raw.svg" class="img-responsive" alt="Project"> 
+
+As you can see, **feature no. 2 (Goniometer, ankle_frontal)** has been ranked the highest by the algorithm due to its importance as a predictor for class labels. The others just from raw data seems to be insignificant. This will later be verified by other algorithms later on.
 
 ## 5 Methods
 In this project, we will use the aforementioned sesnor and biomechanical data as input features and corressponding locomotion modes as classification labels to develop supervised and unsupervised ML models such as k-Means Clustering, Principal Component Analysis (PCA), Linear Discriminant Analysis (LDA), Support Vector Machines (SVM), Random Forest (RF), Decision Trees (DT), and Neural Networks (NN). Although the data has been appropriately filtered for the specific sensors, we may have to further pre-process the raw data (e.g. normalization of Joint Moment and Powers data by the subject mass, rectification and low-pass filtering of EMG data) due to possibly unaccounted-for factors such as, skin conditions, electrode placements, and anatomical differences between the subjects. Also, for some sensors, instead of the actual data samples, use of the envelop of data samples might make more sense. We expect to have reasonable classification accuracy the locmotion modes using the aforementioned methods. Additionally, development of interpretable models will be of particular interest. 
@@ -41,10 +46,21 @@ In this project, we will use the aforementioned sesnor and biomechanical data as
 
 ### 6.2 k-Means Clustering
 
+### 6.4 Linear Discriminant Analysis (LDA)
+
+Random permutation has been utilized to randomly split the raw data into training_data (80% of total) and testing_data (20% of total). This **LDA** achieves **68.41%** test accuracy on raw data, compared to 14.2% which would be for random class assignments, and thus contains significant results on just raw data.
+
+After performing **PCA**, **LDA** achieves **68.41%** test accuracy with no dimensionality reduction, so, PCA without pruning does not improve accuracy for LDA.
+
 ### 6.3 MLP
+
 <img src="images\MLP_arch.svg" class="img-responsive" alt="Project"> 
 
+After running for 50 epochs, this simple **MLP** with 3 fully connected layers achieves **99.06%** test accuracy on raw data (pretty significant).
+
 <img src="images\MLP_raw_acc_loss.svg" class="img-responsive" alt="Project"> 
+
+But **PCA-MLP** achieves **99.17% test accuracy** with no dimensionality reduction, which is higher than just the raw data. Running for a higher number of epochs will translate to higher accuracy, Thorough hyper-parameter tuning is yet to be done, but the result is already quite good.
 
 <img src="images\MLP_PCA_acc_loss.svg" class="img-responsive" alt="Project"> 
 
