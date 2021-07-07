@@ -26,7 +26,16 @@ The study in [1] focused only on linear relationships between variables and terr
 
 #### 4.3.1 Signal Conditioning
 
+The original dataset consists of several features representing individual sensor channels. Each feature is sampled at a rate of 200 Hz, resulting in a large number of samples. However, for noisy data, especially EMG data, this data can be difficult to classify without processing. One method of doing so is to collect samples in a moving window of time, and create features for each window of time. For this project, each window occurs in series after the previous one, as seen in the figure below, with gaps occurring whenever there are breaks in the time series data.
+
+<img src="images\window_even.PNG" class="img-responsive" alt="Project"> 
+
+For each time window, 5 sub-features were extracted from each feature: the maximum and minimum values in that window, the mean value of the window, the standard deviation of values in that window, and the final value in the window. These sub-features effectively multiply the number of dimensions of the dataset by 5. While this means that dimensionality reduction will be more intensive, the processed features will end up more informative than the raw data.
+
+<img src="images\window_overlap.PNG" class="img-responsive" alt="Project"> 
+
 #### 4.3.2 Feature Engineering
+
 ##### 4.3.2.1 Minimum Relevance Maximum Redundancy (MRMR) Scoring
 
 All of raw data and labels go into the algorithm which scores features based on their relevance to class labels.
