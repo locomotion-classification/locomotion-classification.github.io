@@ -89,7 +89,7 @@ But **PCA-MLP** achieves **99.17% test accuracy** with no dimensionality reducti
 ### 6.5 CNN
 
 <p align="center">
-  <img src="images\CNN_arch2.svg" class="img-responsive" alt="Project" width="800" height="800"> 
+  <img src="images\CNN_arch2.svg" class="img-responsive" alt="Project" width="600" height="600"> 
 </p>
 
 <p align="center">
