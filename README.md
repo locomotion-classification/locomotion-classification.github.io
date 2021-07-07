@@ -6,7 +6,10 @@ Characterization of human movement and understanding of corresponding muscle coo
 ## 2 Problem Definition
 The [public dataset](http://www.epic.gatech.edu/opensource-biomechanics-camargo-et-al/) for the project has been acquired by EPIC Lab at Georgia Tech. The dataset contains 3-dimensional biomechanical and wearable sensor data (EMG - 11 muscles, Goniometer (GON) - 3 body parts, Inertial Measurement Unit (IMU) - 4 body parts) along with the kinematic and kinetic profiles of joint biomechanics (as a function of gait phase) from right side of the body of 22 young and able-bodied adults for 5 locomotion modes (e.g. level-ground or treadmill walking, stair-ascent, stair-descent, ramp-ascent and ramp-descent), multiple terrain conidtions for each mode (walking speed, stair height, and ramp inclination) and multiple trials [1].
 
-<img src="Project_Description.png" class="img-responsive" alt="Project">
+<p align="center">
+  <img src="Project_Description.png" class="img-responsive" alt="Project">
+</p>
+
 
 In this project, we will develop subject-dependent classification models for 6 possible modes (standing and 5 locomotion modes) regardless of their terrain conditions based on biomechanics data captured from lower limb using EMG, GON, IMU, Inverse Dynamics (ID), Inverse Kinematics (IK), Joint Power (JP), Force Plate (FP) etc. from able-bodied participants for a single adult (e.g. AB21 from the dataset).
 
@@ -28,7 +31,10 @@ The study in [1] focused only on linear relationships between variables and terr
 
 All of raw data and labels go into the algorithm which scores features based on their relevance to class labels.
 
-<img src="images\MRMR_raw.svg" class="img-responsive" alt="Project"> 
+<p align="center">
+  <img src="images\MRMR_raw.svg" class="img-responsive" alt="Project"> 
+</p>
+
 
 As you can see, **feature no. 2 (Goniometer, ankle_frontal)** has been ranked the highest by the algorithm due to its importance as a predictor for class labels. The others just from raw data seems to be insignificant. This will later be verified by other algorithms later on.
 
@@ -54,21 +60,32 @@ After performing **PCA**, **LDA** achieves **68.41%** test accuracy with no dime
 
 ### 6.3 MLP
 
-<img src="images\MLP_arch.svg" class="img-responsive" alt="Project"> 
+<p align="center">
+  <img src="images\MLP_arch.svg" class="img-responsive" alt="Project"  width="400" height="400"> 
+</p>
 
 After running for 50 epochs, this simple **MLP** with 3 fully connected layers achieves **99.06%** test accuracy on raw data (pretty significant).
 
-<img src="images\MLP_raw_acc_loss.svg" class="img-responsive" alt="Project"> 
+<p align="center">
+  <img src="images\MLP_raw_acc_loss.svg" class="img-responsive" alt="Project"> 
+</p>
 
 But **PCA-MLP** achieves **99.17% test accuracy** with no dimensionality reduction, which is higher than just the raw data. Running for a higher number of epochs will translate to higher accuracy, Thorough hyper-parameter tuning is yet to be done, but the result is already quite good.
 
-<img src="images\MLP_PCA_acc_loss.svg" class="img-responsive" alt="Project"> 
+<p align="center">
+  <img src="images\MLP_PCA_acc_loss.svg" class="img-responsive" alt="Project">
+</p>
+ 
 
 ### 6.4 CNN
 
-<img src="images\CNN_arch2.svg" class="img-responsive" alt="Project"> 
+<p align="center">
+  <img src="images\CNN_arch2.svg" class="img-responsive" alt="Project" width="800" height="800"> 
+</p>
 
-<img src="images\CNN_acc.png" class="img-responsive" alt="Project"> <img src="images\CNN_loss.png" class="img-responsive" alt="Project">
+<p align="center">
+  <img src="images\CNN_acc.png" class="img-responsive" alt="Project"> <img src="images\CNN_loss.png" class="img-responsive" alt="Project">
+</p>
 
 ## 7 Broader Impact
 The broader impact of this project would be future development of robotic assistive devices and active prostheses for targeted rehabilitation methods beyond clinical settings, and improvement of biomimetic controllers that better adapt to terrain conditions (practical scenarios).
