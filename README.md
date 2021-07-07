@@ -45,7 +45,7 @@ In this project, we will use the aforementioned sesnor and biomechanical data as
 
 <img src="images\CNN_arch2.svg" class="img-responsive" alt="Project"> 
 
-<img src="images\CNN_acc.png" class="img-responsive" alt="Project"> <img src="images\CNN_loss.png" class="img-responsive" alt="Project">\
+<img src="images\CNN_acc.png" class="img-responsive" alt="Project"> <img src="images\CNN_loss.png" class="img-responsive" alt="Project">
 
 ## 7 Broader Impact
 The broader impact of this project would be future development of robotic assistive devices and active prostheses for targeted rehabilitation methods beyond clinical settings, and improvement of biomimetic controllers that better adapt to terrain conditions (practical scenarios).
