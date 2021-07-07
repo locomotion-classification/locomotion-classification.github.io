@@ -4,7 +4,7 @@
 Characterization of human movement and understanding of corresponding muscle coordination over various locmotion modes and terrain conditions is crucial for determining human movement strategies in environments more prevalent to community ambulation. Biomechanical data captured during locomotion, such as, Electromyography (EMG) signals, can be used to anticipate transitions from one mode to another. Moreover, combination of multiple sensor data has the possibility to assist in data-driven model development for locomotion intent recognition using Machine Learning (ML) to greatly accelerate such tasks. 
 
 ## 2 Problem Definition
-The [public dataset](http://www.epic.gatech.edu/opensource-biomechanics-camargo-et-al/) for the project has been acquired by EPIC Lab at Georgia Tech. The dataset contains 3-dimensional biomechanical and wearable sensor data (EMG - 11 muscles, Goniometer (GON) - 3 body parts, Inertial Measurement Unit (IMU) - 4 body parts) along with the kinematic and kinetic profiles of joint biomechanics (as a function of gait phase) from right side of the body of 22 young and able-bodied adults for 5 locomotion modes (e.g. level-ground or treadmill walking, stair-ascent, stair-descent, ramp-ascent and ramp-descent), multiple terrain conidtions for each mode (walking speed, stair height, and ramp inclination) and multiple trials [1].
+The dataset contains 3-dimensional biomechanical and wearable sensor data (EMG - 11 muscles, Goniometer (GON) - 3 body parts, Inertial Measurement Unit (IMU) - 4 body parts) along with the kinematic and kinetic profiles of joint biomechanics (as a function of gait phase) from right side of the body of 22 young and able-bodied adults for various locomotion modes (e.g. level-ground or treadmill walking, stair-ascent, stair-descent, ramp-ascent and ramp-descent), multiple terrain conidtions for each mode (walking speed, stair height, and ramp inclination) and multiple trials [1].
 
 <p align="center">
   <img src="Project_Description.png" class="img-responsive" alt="Project">
@@ -19,8 +19,15 @@ The study in [1] focused only on linear relationships between variables and terr
 ## 4 Data Collection
 
 ### 4.1 Finding Data
+The [public dataset](http://www.epic.gatech.edu/opensource-biomechanics-camargo-et-al/) for the project has been acquired by EPIC Lab at Georgia Tech. In this project, we work on a randomly chosen subset of the data, i.e., we focus on sensor data collected from a single participant (e.g. AB21) and cosider all possible terrain conditions and locmotion modes and related sensors.
 
 ### 4.2 Cleaning and Merging Data
+
+The dataset has an organized directory structure containing timestamps and corresponding locomotion labels. During data exploration, we have excluded Treadmill terrain condition from our considered dataset, as it does not contain corresponsing labels. It, howvwer, constains walking/running speeds, which can be a regression analysis task, based on the sensor data, and as such, was not considered in this study. Henceforth, we consider these three terrain conditions: **Levelground**, **Ramp**, and **Stair**.
+
+Some of the biomechanics data had missing data values (NaN or Not-a-Number) or low information content, such as 'Inverse Kinematics' (ik), 'Inverse Dynamics' (id), 'Joint Power' (jp), and 'Force Plate' (fp). We have not considered them as well. In particular, we focused on **5** sensors:
+
+* ```gon```: Goniometer data from hip, knee, and ankle, sampled at 1000 Hz
 
 ### 4.3 Data Pre-Processing
 
@@ -52,6 +59,7 @@ In this project, we will use the aforementioned sesnor and biomechanical data as
 
 ### 5.1 Unsupervised Learning Component
 
+While working on raw data, considering samples from each time point can be 
 ### 5.2 Supervised Learning Component
 
 
@@ -101,13 +109,13 @@ The broader impact of this project would be future development of robotic assist
 
 ## 8 Contributions
 
-* Ian Thomas Cullen: Data Cleaning, Data Pre-processing (Signal Conditioning using Windowed Moving Average), Feature Engineering (calculating max/min, mean, std from raw features), Video Editing and Presentation for Proposal
+* '''Ian Thomas Cullen''': Data Cleaning, Data Pre-processing (Signal Conditioning using Windowed Moving Average), Feature Engineering (calculating max/min, mean, std from raw features), Video Editing and Presentation for Proposal
 
-* Kennedy A Lee: Convolutional Neural Network (CNN) on raw data, Hyperparameter Tuning
+* '''Kennedy A Lee''': Convolutional Neural Network (CNN) on raw data, Hyperparameter Tuning
 
-* Imran Ali Shah: Principal Component Analysis (PCA), k-Means Clustering, Video Editing and Presentation for Proposal
+* '''Imran Ali Shah''': Principal Component Analysis (PCA), k-Means Clustering, Video Editing and Presentation for Proposal
 
-* Anupam Golder: Data Merging (for different environments and different locomotion modes), Data Cleaning, Feature Scoring (Using Minimum Redundancy Maximum Relevance scoring), MLP on raw data, Github Page Editing
+* '''Anupam Golder''': Data Merging (for different environments and different locomotion modes), Data Cleaning, Feature Scoring (Using Minimum Redundancy Maximum Relevance scoring), MLP on raw data, Github Page Editing
 
 ## 9 References
 1. Camargo, J., Ramanathan, A., Flanagan, W., & Young, A. (2021). A comprehensive, open-source dataset of lower limb biomechanics in multiple conditions of stairs, ramps, and level-ground ambulation and transitions. Journal of Biomechanics, 119, 110320.
