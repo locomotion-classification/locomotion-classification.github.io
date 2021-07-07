@@ -23,10 +23,6 @@ The study in [1] focused only on linear relationships between variables and terr
 
 #### 4.3.1 Signal Conditioning
 
-<img src="images\window_even.PNG" class="img-responsive" alt="Project"> 
-
-<img src="images\window_overlap.PNG" class="img-responsive" alt="Project"> 
-
 #### 4.3.2 Feature Engineering
 
 <img src="images\MRMR_raw.svg" class="img-responsive" alt="Project"> 
@@ -46,6 +42,11 @@ In this project, we will use the aforementioned sesnor and biomechanical data as
 ### 6.2 k-Means Clustering
 
 ### 6.3 MLP
+<img src="images\MLP_arch.svg" class="img-responsive" alt="Project"> 
+
+<img src="images\MLP_raw_acc_loss.svg" class="img-responsive" alt="Project"> 
+
+<img src="images\MLP_PCA_acc_loss.svg" class="img-responsive" alt="Project"> 
 
 ### 6.4 CNN
 
