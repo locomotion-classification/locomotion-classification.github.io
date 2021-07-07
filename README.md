@@ -23,11 +23,19 @@ The [public dataset](http://www.epic.gatech.edu/opensource-biomechanics-camargo-
 
 ### 4.2 Cleaning and Merging Data
 
-The dataset has an organized directory structure containing timestamps and corresponding locomotion labels. During data exploration, we have excluded Treadmill terrain condition from our considered dataset, as it does not contain corresponsing labels. It, howvwer, constains walking/running speeds, which can be a regression analysis task, based on the sensor data, and as such, was not considered in this study. Henceforth, we consider these three terrain conditions: **Levelground**, **Ramp**, and **Stair**.
+The dataset has an organized directory structure containing timestamps and corresponding locomotion labels. During data exploration, we have excluded Treadmill terrain condition from our considered dataset, as it does not contain corresponsing labels. It, howvwer, constains walking/running speeds, which can be a regression analysis task, based on the sensor data, and as such, was not considered in this study. Henceforth, we consider these three terrain conditions: **```Levelground```**, **```Ramp```**, and **```Stair```**.
 
-Some of the biomechanics data had missing data values (NaN or Not-a-Number) or low information content, such as 'Inverse Kinematics' (ik), 'Inverse Dynamics' (id), 'Joint Power' (jp), and 'Force Plate' (fp). We have not considered them as well. In particular, we focused on **5** sensors:
+Some of the biomechanics data had missing data values (NaN or Not-a-Number) or low information content, such as 'Inverse Kinematics' (ik), 'Inverse Dynamics' (id), 'Joint Power' (jp), and 'Force Plate' (fp). We have not considered them as well. In particular, we focused on **5 sensors**:
 
-* ```gon```: Goniometer data from hip, knee, and ankle, sampled at 1000 Hz
+* **```gon```**: Goniometer data from hip, knee, and ankle, sampled at 1000 Hz
+* **```emg```**: Electromyography data from 11 muscles, sampled at 1000 Hz
+* **```gcLeft```**: Gait cycle segmented by heel strike or toe off of left foot, sampled at 200 Hz
+* **```gcRight```**: Gait cycle segmented by heel strike or toe off of right foot, sampled at 200 Hz
+* **```imu```**: Inertial Measurement Unit data from trunk, thigh, shank, and foot segments. Sampled at 200 Hz
+
+Moreover, in this study, we consider only 7 locomotion modes, specifically, **```idle```**, **```walk```**, **```stand```**, **```stair-ascent```**, **```stair-descent```**, **```ramp-ascent```**, and **```ramp-descent```**. Consequently, the problem becomes that of a classification task with 7 output classes and 44 sensor data features.
+
+Data merging process involved concatenating data from different locomotion modes, different sensors, and different acquisition campaigns. As you might notice, the sensor data are sampled at two different sampling frequencies (200 Hz and 1000 Hz). We chose to downsample the high frequency data to align the features.
 
 ### 4.3 Data Pre-Processing
 
