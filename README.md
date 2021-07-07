@@ -76,13 +76,13 @@ After performing **PCA**, **LDA** achieves **68.41%** test accuracy with no dime
 After running for 50 epochs, this simple **MLP** with 3 fully connected layers achieves **99.06%** test accuracy on raw data (pretty significant).
 
 <p align="center">
-  <img src="images\MLP_raw_acc_loss.svg" class="img-responsive" alt="Project"> 
+  <img src="images\MLP_raw_acc_loss_2.svg" class="img-responsive" alt="Project"> 
 </p>
 
 But **PCA-MLP** achieves **99.17% test accuracy** with no dimensionality reduction, which is higher than just the raw data. Running for a higher number of epochs will translate to higher accuracy, Thorough hyper-parameter tuning is yet to be done, but the result is already quite good.
 
 <p align="center">
-  <img src="images\MLP_PCA_acc_loss.svg" class="img-responsive" alt="Project">
+  <img src="images\MLP_PCA_acc_loss_2.svg" class="img-responsive" alt="Project">
 </p>
  
 
