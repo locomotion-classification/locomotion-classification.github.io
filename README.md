@@ -25,6 +25,8 @@ The study in [1] focused only on linear relationships between variables and terr
 
 #### 4.3.2 Feature Engineering
 
+<img src="images\MRMR_raw.svg" class="img-responsive" alt="Project"> 
+
 ## 5 Methods
 In this project, we will use the aforementioned sesnor and biomechanical data as input features and corressponding locomotion modes as classification labels to develop supervised and unsupervised ML models such as k-Means Clustering, Principal Component Analysis (PCA), Linear Discriminant Analysis (LDA), Support Vector Machines (SVM), Random Forest (RF), Decision Trees (DT), and Neural Networks (NN). Although the data has been appropriately filtered for the specific sensors, we may have to further pre-process the raw data (e.g. normalization of Joint Moment and Powers data by the subject mass, rectification and low-pass filtering of EMG data) due to possibly unaccounted-for factors such as, skin conditions, electrode placements, and anatomical differences between the subjects. Also, for some sensors, instead of the actual data samples, use of the envelop of data samples might make more sense. We expect to have reasonable classification accuracy the locmotion modes using the aforementioned methods. Additionally, development of interpretable models will be of particular interest. 
 
