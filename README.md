@@ -91,7 +91,7 @@ To better understand how many of the principal components should be used in furt
 
 KMeans clustering was employed to compare and contrast all datapoints in our cleaned dataset. We begin by performing the KMeans clustering on the entire dataset as a whole. We initialized the algorithm with 10 clusters to see how the algorithm would cluster all the data points and if there were any interesting takeaways. Results for the first cluster, a comparison of the 2nd and 8th cluster, and a plot displaying all of the labeled clusters are shown in the figures below. From the last plot specifically, we see that all of the clusters are overlapping, which indicates that KMeans may not provide any discernable results. 
 
-<p float="left">
+<p align="center">
   <img src="images\kmeans1.png" class="img-responsive" alt="Project" width="300" />
   <img src="images\kmeans2.png" class="img-responsive" alt="Project" width="300" /> 
   <img src="images\kmeans3.png" class="img-responsive" alt="Project" width="300" />
