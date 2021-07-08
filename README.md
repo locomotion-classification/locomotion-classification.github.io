@@ -152,9 +152,21 @@ But **PCA-MLP** achieves **99.17% test accuracy** with no dimensionality reducti
   <img src="images\CNN_arch2.svg" class="img-responsive" alt="Project" width="600" height="600"> 
 </p>
 
+The **CNN** was configured with 3 convolutional layers and 1 fully connected layer. 
+
+The hyper parameters which were modified were tuned using manual search.
+
+The learning rate was changed from the default of 0.001 due to severe oscillations in the training accuracy and loss throughout training. A value of 0.00001 yielded results with minimal oscillations in the training accuracy and loss in the later epochs and overall smoother learning curves.
+
+The number of epochs was initially chosen to be 100. It was reduced to 30 due to excessive learning time as well as the repeated oscillations in the learning curves due to the previous learning rate. Given the current results with the new learning rate, the model appears to converge at approximately 20 epochs, though further tuning could likely cause learning performance changes that could make 30 epochs or more necessary for convergence.
+
+The CNN with the current configuration achieved a test accuracy of **92.66%** on the raw data.
+
 <p align="center">
   <img src="images\CNN_acc.png" class="img-responsive" alt="Project"> <img src="images\CNN_loss.png" class="img-responsive" alt="Project">
 </p>
+
+The current results are good overall, and further tuning will be done to optimize the rest of the hyperparameters to improve learning and testing performance.
 
 ## 7 Broader Impact
 The broader impact of this project would be future development of robotic assistive devices and active prostheses for targeted rehabilitation methods beyond clinical settings, and improvement of biomimetic controllers that better adapt to terrain conditions (practical scenarios).
