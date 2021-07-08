@@ -25,7 +25,7 @@ The [public dataset](http://www.epic.gatech.edu/opensource-biomechanics-camargo-
 
 The dataset has an organized directory structure containing timestamps and corresponding locomotion labels. During data exploration, we have excluded Treadmill terrain condition from our considered dataset, as it does not contain corresponsing labels. It, howvwer, constains walking/running speeds, which can be a regression analysis task, based on the sensor data, and as such, was not considered in this study. Henceforth, we consider these three terrain conditions: **```Levelground```**, **```Ramp```**, and **```Stair```**.
 
-Some of the biomechanics data had missing data values (NaN or Not-a-Number) or low information content, such as 'Inverse Kinematics' (ik), 'Inverse Dynamics' (id), 'Joint Power' (jp), and 'Force Plate' (fp). We have not considered them as well. In particular, we focused on **5 sensors**:
+Some of the biomechanics data had missing data values (NaN or Not-a-Number) or low information content, such as 'Inverse Kinematics' (ik), 'Inverse Dynamics' (id), 'Joint Power' (jp), and 'Force Plate' (fp). We have not considered them as well. In particular, we focused on **```5 sensors```**:
 
 * **```gon```**: Goniometer data from hip, knee, and ankle, sampled at 1000 Hz
 * **```emg```**: Electromyography data from 11 muscles, sampled at 1000 Hz
@@ -56,11 +56,11 @@ For each time window, 5 sub-features were extracted from each feature: the maxim
 All of raw data and labels go into the algorithm which scores features based on their relevance to class labels.
 
 <p align="center">
-  <img src="images\MRMR_raw.svg" class="img-responsive" alt="Project"> 
+  <img src="images\MRMR_raw2.svg" class="img-responsive" alt="Project"> 
 </p>
 
 
-As you can see, **feature no. 2 (Goniometer, ankle_frontal)** has been ranked the highest by the algorithm due to its importance as a predictor for class labels. The others just from raw data seems to be insignificant. This will later be verified by other algorithms later on.
+As you can see, **```feature no. 2 (Goniometer, ankle-frontal)```** has been ranked the highest by the algorithm due to its importance as a predictor for class labels. The others just from raw data seems to be insignificant. This will later be verified by other algorithms later on.
 
 ## 5 Methods
 In this project, we will use the aforementioned sesnor and biomechanical data as input features and corressponding locomotion modes as classification labels to develop supervised and unsupervised ML models such as k-Means Clustering, Principal Component Analysis (PCA), Linear Discriminant Analysis (LDA), Support Vector Machines (SVM), Random Forest (RF), Decision Trees (DT), and Neural Networks (NN). Although the data has been appropriately filtered for the specific sensors, we may have to further pre-process the raw data (e.g. normalization of Joint Moment and Powers data by the subject mass, rectification and low-pass filtering of EMG data) due to possibly unaccounted-for factors such as, skin conditions, electrode placements, and anatomical differences between the subjects. Also, for some sensors, instead of the actual data samples, use of the envelop of data samples might make more sense. We expect to have reasonable classification accuracy the locmotion modes using the aforementioned methods. Additionally, development of interpretable models will be of particular interest. 
