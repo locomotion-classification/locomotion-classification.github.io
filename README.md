@@ -64,7 +64,7 @@ For each time window, 5 sub-features were extracted from each feature: the maxim
 All of raw data and labels go into the algorithm which scores features based on their relevance to class labels.
 
 <p align="center">
-  <img src="images\MRMR_raw2.svg" class="img-responsive" alt="Project"> 
+  <img src="images\MRMR_raw3.svg" class="img-responsive" alt="Project"> 
 </p>
 
 
