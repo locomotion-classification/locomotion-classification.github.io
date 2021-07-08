@@ -139,13 +139,23 @@ After performing **PCA**, **LDA** achieves **68.41%** test accuracy with no dime
 
 #### 6.2.2 DT
 
-Binary Decision Tree for multiclass classification has been fitted to the training data based on the features and class labels. The binary tree creates node splitting for the feature vectors based on impurity or node error. Curvature Test (a statistical test assessing the null hypothesis that two features are unassociated) was chosen so that the decision tree classifier chooses the split predictor that minimizes the p-value of chi-square tests of independence between each feature and the class label [5]. The fitted decision tree achieves **96.56% test accuracy**. Also, an estimation of predictor importance values can be computed by summing changes in the risk due to splits on every feature and dividing the sum by the number of branch nodes, which results in the following graph.
+Binary Decision Tree for multiclass classification has been fitted to the training data based on the features and class labels. The binary tree creates node splitting for the feature vectors based on impurity or node error. Curvature Test (a statistical test assessing the null hypothesis that two features are unassociated) was chosen so that the decision tree classifier chooses the split predictor that minimizes the p-value of chi-square tests of independence between each feature and the class label [5]. The fitted decision tree achieves **96.81% test accuracy**. Also, an estimation of predictor importance values can be computed by summing changes in the risk due to splits on every feature and dividing the sum by the number of branch nodes, which results in the following graph.
 
 <p align="center">
   <img src="images\decision_tree_raw.svg" class="img-responsive" alt="Project"> 
 </p>
 
 As we can see, Goniometer sensor data have been ranked the highest as features using Decision Tree based analysis as well.
+
+In the following, we report relevant [ML_metrics](https://scikit-learn.org/stable/modules/model_evaluation.html) evaluation for Decision Tree Classifier, which we will later extend to the other classification algorithms.
+
+| Scoring Metric | Performance Value|
+| ------------- | ------------- |
+| accuracy  | 96.81%  |
+| balanced_accuracy_score | 96.92%  |
+| precision_score_macro | 0.9686  |
+| recall_score_macro | 0.9692  |
+| f1_score_macro | 0.9689  |
 
 #### 6.2.3 MLP
 
@@ -198,7 +208,7 @@ In the following, we present a comparison among the test accuracies obtained fro
 | Method | Test Accuracy (%)|
 | ------------- | ------------- |
 | LDA  | 68.41  |
-| DT  | 96.56  |
+| DT  | 96.81  |
 | PCA-LDA  | 68.41  |
 | MLP | 99.06  |
 | PCA-MLP | **99.17**  |
