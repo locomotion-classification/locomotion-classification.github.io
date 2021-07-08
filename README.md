@@ -1,32 +1,32 @@
 # Locomotion Mode Classification based on Wearable Sensor data from Lower Limb Biomechanics 
 
 ## 1 Introduction
-Characterization of human movement and understanding of corresponding muscle coordination over various locmotion modes and terrain conditions are crucial for determining human movement strategies in environments more prevalent to community ambulation. Biomechanical data captured during locomotion, such as, Electromyography (EMG) signals, can be used to anticipate transitions from one mode to another. Moreover, combination of multiple sensor data has the possibility to assist in data-driven model development for locomotion intent recognition using Machine Learning (ML) to greatly accelerate such tasks. 
+Characterization of human movement and understanding of corresponding muscle coordination over various locomotion modes and terrain conditions are crucial for determining human movement strategies in environments more prevalent to community ambulation. Biomechanical data captured during locomotion, such as, Electromyography (EMG) signals, can be used to anticipate transitions from one mode to another. Moreover, combination of multiple sensor data has the possibility to assist in data-driven model development for locomotion intent recognition using Machine Learning (ML) to greatly accelerate such tasks. 
 
 ## 2 Problem Definition
-In this project, we propose to combine multiple 3-dimensional biomechanical and wearable sensor data (EMG, Goniometer (GON), Inertial Measurement Unit (IMU) etc.) along with gait information to classify locomotion modes (e.g. idle position, standing position, level-ground walking, stair-ascent, stair-descent, ramp-ascent and ramp-descent) from a single time-sample (hence instantaeous) which might be helpful in predicting a person's ongoing locmotion mode and develop assistive devices in future. 
+In this project, we propose to combine multiple 3-dimensional biomechanical and wearable sensor data (EMG, Goniometer (GON), Inertial Measurement Unit (IMU) etc.) along with gait information to classify locomotion modes (e.g. idle position, standing position, level-ground walking, stair-ascent, stair-descent, ramp-ascent and ramp-descent) from a single time-sample (hence instantaneous) which might be helpful in predicting a person's ongoing locomotion mode and develop assistive devices in future. 
 
-In this project, we will develop subject-dependent classification models for 7 possible modes (idle, standing and 5 movements) regardless of their terrain conditions based on biomechanics data captured from lower limbs of able-bodied participants using EMG, GON, IMU etc. sensors. Details of chosen sensors and classification labels are provided in ```Section 4.2```.
+We will develop subject-dependent classification models for 7 possible modes (idle, standing and 5 movements) regardless of their terrain conditions based on biomechanics data captured from lower limbs of able-bodied participants using EMG, GON, IMU etc. sensors. Details of chosen sensors and classification labels are provided in ```Section 4.2```.
 
 ## 3 Literature Review
-The study in [1] focused only on linear relationships between variables and terrain conditions. In this work, we will explore possible higher order relationships and develop ML models to classify locomotion modes. As the dataset has been released only recently(Feb. 2021), this will be one of the first studies on this dataset along this direction. Recently, gait phase estimation during multimodal locomotion from just IMU data [2], and subject-independent slope prediction from just IMU and biomechanical data [3] using Convoltuional Neural Network have been reported for exoskeleton assistance. However, in this study, we will combine data from multiple wearable sensors, thus providing a more comprehensive picture.
+The study in [1] focused only on linear relationships between variables and terrain conditions. In this work, we will explore possible higher order relationships and develop ML models to classify locomotion modes. As the dataset has been released only recently(Feb. 2021), this will be one of the first studies on this dataset along this direction. Recently, gait phase estimation during multimodal locomotion from just IMU data [2], and subject-independent slope prediction from just IMU and biomechanical data [3] using Convolutional Neural Network have been reported for exoskeleton assistance. However, in this study, we will combine data from multiple wearable sensors, thus providing a more comprehensive picture.
 
 ## 4 Data Collection
 
 ### 4.1 Finding Data
 The [public dataset](http://www.epic.gatech.edu/opensource-biomechanics-camargo-et-al/) acquired by EPIC Lab at Georgia Tech has been adopted for the current project. 
 
-The dataset contains 3-dimensional biomechanical and wearable sensor data (EMG - 11 muscles, Goniometer (GON) - 3 body parts, Inertial Measurement Unit (IMU) - 4 body parts) along with the kinematic and kinetic profiles of joint biomechanics (as a function of gait phase) from right side of the body of 22 young and able-bodied adults for various locomotion modes (e.g. level-ground or treadmill walking, stair-ascent, stair-descent, ramp-ascent and ramp-descent), multiple terrain conidtions for each mode (walking speed, stair height, and ramp inclination) and multiple trials [1]. The following figure shows the different sensor placements in that study[1]:
+The dataset contains 3-dimensional biomechanical and wearable sensor data (EMG - 11 muscles, Goniometer (GON) - 3 body parts, Inertial Measurement Unit (IMU) - 4 body parts) along with the kinematic and kinetic profiles of joint biomechanics (as a function of gait phase) from right side of the body of 22 young and able-bodied adults for various locomotion modes (e.g. level-ground or treadmill walking, stair-ascent, stair-descent, ramp-ascent and ramp-descent), multiple terrain conditions for each mode (walking speed, stair height, and ramp inclination) and multiple trials [1]. The following figure shows the different sensor placements in that study[1]:
 
 <p align="center">
   <img src="Project_Description.png" class="img-responsive" alt="Project">
 </p>
 
-In this project, we will work on a randomly chosen subset of the data, i.e., we focus on sensor data collected from a single participant (e.g. AB21) and consider all possible terrain conditions and selected locmotion modes and related sensors.
+In this project, we will work on a randomly chosen subset of the data, i.e., we focus on sensor data collected from a single participant (e.g. AB21) and consider all possible terrain conditions and selected locomotion modes and related sensors.
 
 ### 4.2 Cleaning and Merging Data
 
-The dataset has an organized directory structure containing timestamps and corresponding locomotion labels. During data exploration, we have excluded Treadmill terrain condition from our considered dataset, as it does not contain the corresponding labels. It, howvwer, contains walking/running speeds, which can be a regression analysis task, based on the sensor data, and as such, was not considered in this study. Henceforth, we consider these three terrain conditions: **```Levelground```**, **```Ramp```**, and **```Stair```**.
+The dataset has an organized directory structure containing timestamps and corresponding locomotion labels. During data exploration, we have excluded Treadmill terrain condition from our considered dataset, as it does not contain the corresponding labels. It, however, contains walking/running speeds, which can be a regression analysis task, based on the sensor data, and as such, was not considered in this study. Henceforth, we consider these three terrain conditions: **```Levelground```**, **```Ramp```**, and **```Stair```**.
 
 Some of the biomechanics data had missing data values (NaN or Not-a-Number) or low information content, such as 'Inverse Kinematics' (ik), 'Inverse Dynamics' (id), 'Joint Power' (jp), and 'Force Plate' (fp). We have not considered them as well. In particular, we focused on the following **```5 sensors```**:
 
@@ -38,7 +38,7 @@ Some of the biomechanics data had missing data values (NaN or Not-a-Number) or l
 
 Moreover, in this study, we consider only **7 locomotion modes**, specifically, **```idle```**, **```walk```**, **```stand```**, **```stair-ascent```**, **```stair-descent```**, **```ramp-ascent```**, and **```ramp-descent```**. Consequently, the problem becomes that of a classification task with **7 output classes** and **44 (= 5+11+2+2+24) input features**.
 
-Data merging process involved concatenating data from different locomotion modes, different sensors, and different acquisition campaigns. As you might notice, the sensor data are sampled at two different sampling frequencies (200 Hz and 1000 Hz). We chose to downsample the high frequency data to align the features. Also, we had to get rid of the time samples that contain sensor data for locomotion modes, such as, 'stand-walk','walk-stand' or 'turn', as we do not consider them in this study.
+Data merging process involved concatenating data from different locomotion modes, different sensors, and different acquisition campaigns. As you might notice, the sensor data are sampled at two different sampling frequencies (200 Hz and 1000 Hz). We chose to downsample the high frequency data to align the features. Also, we had to get rid of the time samples that contain sensor data for locomotion modes, such as, 'stand-walk', 'walk-stand' or 'turn', as we do not consider them in this study.
 
 As a result of the choices made in the above and data cleaning, we end up with **```256,085 data samples```**, each containing 44 features for one of the 7 class labels. For supervised classification tasks, we have used 80% of the total data (204,868 samples) for training and validation (80% for training, 20% for validation), and kept aside 20% (51,217 samples) as test data, apart from CNN based classification. For CNN, we chose 70% of the total data, and split the rest in equal halves (15%) for validation and testing, respectively.
 
@@ -73,7 +73,7 @@ MRMR Scoring [6] computes pairwise mutual information of features and mutual inf
 As you can see, **```feature no. 2 (Goniometer, ankle-frontal)```** has been ranked the highest by the algorithm due to its importance as a predictor for class labels. The others just from raw data seem to be insignificant. This will later be verified by other algorithms later on, and as we will use pre-processing on raw data for the later part of the project, we expect to see improvements in the scores for features from other sensors.
 
 ## 5 Methods
-In this project, we will use the aforementioned sesnor and biomechanical data as input features and corressponding locomotion modes as classification labels to develop supervised and unsupervised ML models such as k-Means Clustering, Principal Component Analysis (PCA), Linear Discriminant Analysis (LDA), Support Vector Machines (SVM), Random Forest (RF), Decision Trees (DT), and Neural Networks (NN).
+In this project, we will use the aforementioned sensor and biomechanical data as input features and corresponding locomotion modes as classification labels to develop supervised and unsupervised ML models such as k-Means Clustering, Principal Component Analysis (PCA), Linear Discriminant Analysis (LDA), Support Vector Machines (SVM), Random Forest (RF), Decision Trees (DT), and Neural Networks (NN).
 
 ### 5.1 Unsupervised Learning Component
 
@@ -135,11 +135,11 @@ Finally, we perform an **elbow method** analysis of the data (following PCA/dime
 
 In Discriminant Analysis, it is assumed that each class generates features using a multivariate normal distribution, i.e., the model assumes that the data samples have a Gaussian mixture distribution. In Linear Discriminant analysis, the model has the same covariance matrix for each class, with different means. It predicts in a way that minimizes the classification cost defined by posterior probability of classes and cost of misclassification. **LDA** achieves **68.41%** test accuracy on raw data, compared to 14.2% which would be for random class assignments, and thus contains significant results on just raw data.
 
-After performing **PCA**, **LDA** achieves **68.41%** test accuracy with no dimensionality reduction, so, PCA without pruning does not improve accuracy for LDA. Further study needs to be done on LDA after PCA-based dimentionality reduction. 
+After performing **PCA**, **LDA** achieves **68.41%** test accuracy with no dimensionality reduction, so, PCA without pruning does not improve accuracy for LDA. Further study needs to be done on LDA after PCA-based dimensionality reduction. 
 
 #### 6.2.2 DT
 
-Binary Decision Tree for multiclass classification has been fitted to the training data based on the features and class labels. The binary tree creates node splitting for the feature vectors based on impurity or node error. Curvature Test (a statistical test assessing the null hypothesis that two features are unassociated) was chosen so that the decision tree classifier chooses the split predictor that minimizes the p-value of chi-square tests of independence between each feature and the class label [5]. The fitted decision tree achieves **96.56% test accuracy**. Also, an estimation of predictor importance values can be computed by summin changes in the risk due to splits on every feature and dividing the sum by the number of branch nodes, which results in the following graph.
+Binary Decision Tree for multiclass classification has been fitted to the training data based on the features and class labels. The binary tree creates node splitting for the feature vectors based on impurity or node error. Curvature Test (a statistical test assessing the null hypothesis that two features are unassociated) was chosen so that the decision tree classifier chooses the split predictor that minimizes the p-value of chi-square tests of independence between each feature and the class label [5]. The fitted decision tree achieves **96.56% test accuracy**. Also, an estimation of predictor importance values can be computed by summing changes in the risk due to splits on every feature and dividing the sum by the number of branch nodes, which results in the following graph.
 
 <p align="center">
   <img src="images\decision_tree_raw.svg" class="img-responsive" alt="Project"> 
@@ -215,7 +215,7 @@ The broader impact of this project would be future development of robotic assist
 
 ## 9 Contributions
 
-* ```Ian Thomas Cullen```: Data Cleaning, Data Pre-processing (Signal Conditioning using Windowed Moving Average), Feature Engineering (calculating max/min, mean, std from raw features), Video Editing and Presentation for Proposal
+* ```Ian Thomas Cullen```: Data Cleaning, Data Pre-processing (Signal Conditioning using Windowed Moving Average), Feature Engineering (calculating max/min, mean, standard deviation etc. from raw features), Video Editing and Presentation for Proposal
 
 * ```Kennedy A Lee```: Convolutional Neural Network (CNN) on raw data, Hyperparameter Tuning
 
