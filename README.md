@@ -75,7 +75,39 @@ While working on raw data, considering samples from each time point can be
 
 ### 6.1 PCA
 
+Principal component analysis (PCA), which is a broadly used unsupervised algorithm, was performed on the processed data to project it to a lower dimensional space. In essence, PCA was used as a dimensionality reduction algorithm to identify the principal components of our processed data. After performing the PCA, we first analyzed the first two principal components of the analysis (n_components = 2); essentially, this is looking at reducing the dataset of 44 features to only 2, and analyzing the explained variance captured by the first 2 principal components. The visualized result as well as the total explained variance for this (PC 1 vs PC 2) is shown in the figure above. Here, we see that the total explained variance is 65.99%, which suggests that using only 2 of the principal components will capture approximately 66% of the variance. In addition, we see that PC1 and PC2 are unable to clearly separate each of the different labels (labels 1 through 7; 1 - …). 
+
+
+Thus, we decided to look at additional components to see how much variance is captured with each of the components. Comparisons between the first 10 PCs are shown in the figure below. As seen, when comparing the 8th PC to each of the other PCs, there seems to be a pretty definite separation between each of the different labels. We also see that using 10 PCs describes approximately 99.70% of the variance in the data set (total explained variance is equal to 99.70%).
+
+
+To better understand how many of the principal components should be used in further analysis, we extracted the singular values that are obtained from the Singular Value Decomposition (SVD) when the PCA algorithm is performed. Similar to the Elbow Method utilized in finding the optimum number of clusters for a KMeans analysis, a sharp decline in the singular values would suggest that the entire data set can be appropriately captured by only a few components, which specifically are the eigenvectors associated with the highest singular values. A plot of the captured singular values is shown below. From this, we can see that there is a sharp decline in the singular values following 10 components, which suggests using the first 10 principal components would be sufficient for approximating the entire dataset; these results confirm the previous analysis of the different principal components. 
+
+<p align="center">
+  <img src="images\singular_value_decay.png" class="img-responsive" alt="Project"> 
+</p>
+
 ### 6.2 k-Means Clustering
+
+KMeans clustering was employed to compare and contrast all datapoints in our cleaned dataset. We begin by performing the KMeans clustering on the entire dataset as a whole. We initialized the algorithm with 10 clusters to see how the algorithm would cluster all the data points and if there were any interesting takeaways. Results for the first cluster, a comparison of the 2nd and 8th cluster, and a plot displaying all of the labeled clusters are shown in the figures below. From the last plot specifically, we see that all of the clusters are overlapping, which indicates that KMeans may not provide any discernable results. 
+
+<p float="left">
+  <img src="/kmeans1.png" width="100" />
+  <img src="/kmeans2.png" width="100" /> 
+  <img src="/kmeans3.png" width="100" />
+</p>
+
+KMeans clustering was also employed after a dimensionality reduction using PCA. Specifically, the data was reduced to the first two principal components (where 66% of the variance is captured, as mentioned previously). In this case again, the number of clusters was defined as 10, and the resulting visualization is shown in the figure below. In this case, we see that after dimensionality reduction, the data has been defined into distinct clusters with no overlap between each. 
+
+<p align="center">
+  <img src="images\kmeans_pca.png" class="img-responsive" alt="Project"> 
+</p>
+
+Finally, we perform an elbow method analysis of the data (following PCA/dimensionality reduction) to analyze what the optimal number of clusters would be. Here, the find_optimal_num_clusters function implemented in Homework 2 was applied, and the resulting figure is shown below. Using the elbow method, we see that the optimal number of clusters would be approximately 3 to 4. The number clusters chosen for the initial analysis (10) was greater than the value found using the elbow method.
+
+<p align="center">
+  <img src="images\elbow_method.png" class="img-responsive" alt="Project"> 
+</p>
 
 ### 6.3 Linear Discriminant Analysis (LDA)
 
