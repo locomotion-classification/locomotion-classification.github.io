@@ -84,7 +84,7 @@ Thus, we decided to look at additional components to see how much variance is ca
 To better understand how many of the principal components should be used in further analysis, we extracted the singular values that are obtained from the Singular Value Decomposition (SVD) when the PCA algorithm is performed. Similar to the Elbow Method utilized in finding the optimum number of clusters for a KMeans analysis, a sharp decline in the singular values would suggest that the entire data set can be appropriately captured by only a few components, which specifically are the eigenvectors associated with the highest singular values. A plot of the captured singular values is shown below. From this, we can see that there is a sharp decline in the singular values following 10 components, which suggests using the first 10 principal components would be sufficient for approximating the entire dataset; these results confirm the previous analysis of the different principal components. 
 
 <p align="center">
-  <img src="images\singular_value_decay.png" class="img-responsive" alt="Project"> 
+  <img src="images\singular_value_decay.png" class="img-responsive" alt="Project" width = "300"> 
 </p>
 
 ### 6.2 k-Means Clustering
