@@ -41,13 +41,13 @@ Data merging process involved concatenating data from different locomotion modes
 
 #### 4.3.1 Signal Conditioning
 
-The original dataset consists of several features representing individual sensor channels. Each feature is sampled at a rate of 200 Hz, resulting in a large number of samples. However, for noisy data, especially EMG data, this data can be difficult to classify without processing. One method of doing so is to collect samples in a moving window of time, and create features for each window of time. For this project, each window occurs in series after the previous one, as seen in the figure below, with gaps occurring whenever there are breaks in the time series data.
+The original dataset consists of several features representing individual sensor channels. Each feature is sampled at a rate of 200 Hz, resulting in a large number of samples. However, for noisy data, especially EMG data, this data can be difficult to classify without processing. One method of doing so is to collect samples in a moving window of time, and create features for each window of time [4]. For this project, each window occurs in series after the previous one, as seen in the figure below, with gaps occurring whenever there are breaks in the time series data.
 
 <p align="center">
   <img src="images\window_even.PNG" class="img-responsive" alt="Project"> 
 </p>
 
-For each time window, 5 sub-features were extracted from each feature: the maximum and minimum values in that window, the mean value of the window, the standard deviation of values in that window, and the final value in the window. These sub-features effectively multiply the number of dimensions of the dataset by 5. While this means that dimensionality reduction will be more intensive, the processed features will end up more informative than the raw data.
+For each time window, 5 sub-features were extracted from each feature: the maximum and minimum values in that window, the mean value of the window, the standard deviation of values in that window, and the final value in the window. The mean and standard deviation were both suggested as good features for use on EMG data [4], while the maximum, minimum, and final data points for each window provide general information about the data in that time interval. These sub-features effectively multiply the number of dimensions of the dataset by 5. While this means that dimensionality reduction will be more intensive, the processed features will end up more informative than the raw data. Moving forward, we will look at implementing other features than the 5 used here, such as root mean square (RMS) or autoregressive coefficients for EMG data. We also will compare the results of using separate windows in sequence with using overlapping windows, as shown in the figure below.
 
 <p align="center">
   <img src="images\window_overlap.PNG" class="img-responsive" alt="Project"> 
@@ -173,3 +173,4 @@ The broader impact of this project would be future development of robotic assist
 1. Camargo, J., Ramanathan, A., Flanagan, W., & Young, A. (2021). A comprehensive, open-source dataset of lower limb biomechanics in multiple conditions of stairs, ramps, and level-ground ambulation and transitions. Journal of Biomechanics, 119, 110320.
 2. Kang, I., Molinaro, D. D., Duggal, S., Chen, Y., Kunapuli, P., & Young, A. J. (2021). Real-Time Gait Phase Estimation for Robotic Hip Exoskeleton Control During Multimodal Locomotion. IEEE Robotics and Automation Letters, 6(2), 3491-3497.
 3. Lee, D., Kang, I., Molinaro, D. D., Yu, A., & Young, A. J. (2021). Real-Time User-Independent Slope Prediction Using Deep Learning for Modulation of Robotic Knee Exoskeleton Assistance. IEEE Robotics and Automation Letters, 6(2), 3995-4000.
+4. Spiewak, C. (2018). A Comprehensive Study on EMG Feature Extraction and Classifiers. Open Access Journal of Biomedical Engineering and Biosciences, 1(1).
