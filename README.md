@@ -145,7 +145,7 @@ Binary Decision Tree for multiclass classification has been fitted to the traini
 
 As we can see, Goniometer sensor data has been ranked the highest as features using Decision Tree based analysis as well.
 
-### 6.2.3 MLP
+#### 6.2.3 MLP
 
 <p align="center">
   <img src="images\MLP_arch.svg" class="img-responsive" alt="Project"  width="400" height="400"> 
@@ -164,7 +164,7 @@ But **PCA-MLP** achieves **99.17% test accuracy** with no dimensionality reducti
 </p>
  
 
-### 6.2.4 CNN
+#### 6.2.4 CNN
 
 <p align="center">
   <img src="images\CNN_arch2.svg" class="img-responsive" alt="Project" width="600" height="600"> 
