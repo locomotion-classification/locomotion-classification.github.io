@@ -77,6 +77,9 @@ While working on raw data, considering samples from each time point can be
 
 Principal component analysis (PCA), which is a broadly used unsupervised algorithm, was performed on the processed data to project it to a lower dimensional space. In essence, PCA was used as a dimensionality reduction algorithm to identify the principal components of our processed data. After performing the PCA, we first analyzed the first two principal components of the analysis (n_components = 2); essentially, this is looking at reducing the dataset of 44 features to only 2, and analyzing the explained variance captured by the first 2 principal components. The visualized result as well as the total explained variance for this (PC 1 vs PC 2) is shown in the figure above. Here, we see that the total explained variance is 65.99%, which suggests that using only 2 of the principal components will capture approximately 66% of the variance. In addition, we see that PC1 and PC2 are unable to clearly separate each of the different labels (labels 1 through 7; 1 - …). 
 
+<p align="center">
+  <img src="images\file.html" class="img-responsive" alt="Project"> 
+</p>
 
 Thus, we decided to look at additional components to see how much variance is captured with each of the components. Comparisons between the first 10 PCs are shown in the figure below. As seen, when comparing the 8th PC to each of the other PCs, there seems to be a pretty definite separation between each of the different labels. We also see that using 10 PCs describes approximately 99.70% of the variance in the data set (total explained variance is equal to 99.70%).
 
