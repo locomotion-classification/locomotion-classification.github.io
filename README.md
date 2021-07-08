@@ -81,10 +81,6 @@ Principal component analysis (PCA), which is a broadly used unsupervised algorit
   <img src="images\newplot.png" class="img-responsive" alt="Project"> 
 </p>
 
-<p align="center">
-  <img src="images\file.html" class="img-responsive" alt="Project"> 
-</p>
-
 Thus, we decided to look at additional components to see how much variance is captured with each of the components. Comparisons between the first 10 PCs are shown in the figure below. As seen, when comparing the 8th PC to each of the other PCs, there seems to be a pretty definite separation between each of the different labels. We also see that using 10 PCs describes approximately 99.70% of the variance in the data set (total explained variance is equal to 99.70%).
 
 <p align="center">
