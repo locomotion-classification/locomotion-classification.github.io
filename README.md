@@ -37,6 +37,10 @@ Moreover, in this study, we consider only 7 locomotion modes, specifically, **``
 
 Data merging process involved concatenating data from different locomotion modes, different sensors, and different acquisition campaigns. As you might notice, the sensor data are sampled at two different sampling frequencies (200 Hz and 1000 Hz). We chose to downsample the high frequency data to align the features.
 
+
+
+For supervised classification tasks, we have used 80% of the total data for training and validation (80% for training, 20% for validation), and kept aside 20% as test data, apart from CNN based classification. For CNN, we chose 70% of the total data, and split the rest in eqaul halves (15%) for validation and testing, respectively.
+
 ### 4.3 Data Pre-Processing
 
 #### 4.3.1 Signal Conditioning
@@ -71,13 +75,16 @@ In this project, we will use the aforementioned sesnor and biomechanical data as
 
 ### 5.1 Unsupervised Learning Component
 
-While working on raw data, considering samples from each time point can be 
+While working on raw data, considering samples from each time point can be insufficient. So, we have looked into two **Unsupervised** learning algorithms, specifically, **Principal Component Analysis (PCA)** and **k-Means Clustering** to see if we can reduce the number of dimensions and get better classification results. The results for these methods are reported in section 6.1.
+
 ### 5.2 Supervised Learning Component
 
+We have employed several **Supervised** learning algorithms to perform classification task mentioned above, in particular, **Linear Disccriminant Analysis (LDA)**, **Decision Tree (DT)**, **Multi-Layer Perceptron**, and **Convolutional Neural Network (CNN)**. The results for these methods are reported in section 6.2.
 
 ## 6 Results
 
-### 6.1 PCA
+### 6.1 Unsupervised Learning Methods
+#### 6.1.1 PCA
 
 Principal component analysis (PCA), which is a broadly used unsupervised algorithm, was performed on the processed data to project it to a lower dimensional space. In essence, PCA was used as a dimensionality reduction algorithm to identify the principal components of our processed data. After performing the PCA, we first analyzed the first two principal components of the analysis (n_components = 2); essentially, this is looking at reducing the dataset of 44 features to only 2, and analyzing the explained variance captured by the first 2 principal components. 
 
@@ -99,7 +106,7 @@ To better understand how many of the principal components should be used in furt
   <img src="images\singular_value_decay.png" class="img-responsive" alt="Project" width = "500"> 
 </p>
 
-### 6.2 k-Means Clustering
+#### 6.1.2 k-Means Clustering
 
 KMeans clustering was employed to compare and contrast all datapoints in our cleaned dataset. We begin by performing the KMeans clustering on the entire dataset as a whole. We initialized the algorithm with 10 clusters to see how the algorithm would cluster all the data points and if there were any interesting takeaways. Results for the first cluster, a comparison of the 2nd and 8th cluster, and a plot displaying all of the labeled clusters are shown in the figures below. From the last plot specifically, we see that all of the clusters are overlapping, which indicates that KMeans may not provide any discernable results. 
 
@@ -121,13 +128,24 @@ Finally, we perform an elbow method analysis of the data (following PCA/dimensio
   <img src="images\elbow_method.png" class="img-responsive" alt="Project" width="500"> 
 </p>
 
-### 6.3 Linear Discriminant Analysis (LDA)
+### 6.2 Supervised Learning Methods
+#### 6.2.1 Linear Discriminant Analysis (LDA)
 
 Random permutation has been utilized to randomly split the raw data into training_data (80% of total) and testing_data (20% of total). This **LDA** achieves **68.41%** test accuracy on raw data, compared to 14.2% which would be for random class assignments, and thus contains significant results on just raw data.
 
 After performing **PCA**, **LDA** achieves **68.41%** test accuracy with no dimensionality reduction, so, PCA without pruning does not improve accuracy for LDA.
 
-### 6.4 MLP
+#### 6.2.2 Decision tree (DT)
+
+Binary Decision Tree for multiclass classification has been fitted to the training data based on the features and class labels. The binary tree creates node splitting for the feature vectors based on impurity or node error. Curvature Test (a statistical test assessing the null hypothesis that two features are unassociated) was chosen so that the decision tree classifier chooses the split predictor that minimizes the p-value of chi-square tests of independence between each feature and the class label [5]. The fitted decision tree achieves **96.56%** accuracy on test data. Also, an estimation of predictor importance values can be computed by summin changes in the risk due to splits on every feature and dividing the sum by the number of branch nodes, which results in the following graph.
+
+<p align="center">
+  <img src="images\decision_tree_raw.svg" class="img-responsive" alt="Project"> 
+</p>
+
+As we can see, Goniometer sensor data has been ranked the highest as features using Decision Tree based analysis as well.
+
+### 6.2.3 MLP
 
 <p align="center">
   <img src="images\MLP_arch.svg" class="img-responsive" alt="Project"  width="400" height="400"> 
@@ -146,13 +164,13 @@ But **PCA-MLP** achieves **99.17% test accuracy** with no dimensionality reducti
 </p>
  
 
-### 6.5 CNN
+### 6.2.4 CNN
 
 <p align="center">
   <img src="images\CNN_arch2.svg" class="img-responsive" alt="Project" width="600" height="600"> 
 </p>
 
-The **CNN** was configured with 3 convolutional layers and 1 fully connected layer. 
+The **CNN** was configured with 3 convolutional layers and 1 fully connected layer.
 
 The hyper parameters which were modified were tuned using manual search.
 
@@ -160,7 +178,7 @@ The learning rate was changed from the default of 0.001 due to severe oscillatio
 
 The number of epochs was initially chosen to be 100. It was reduced to 30 due to excessive learning time as well as the repeated oscillations in the learning curves due to the previous learning rate. Given the current results with the new learning rate, the model appears to converge at approximately 20 epochs, though further tuning could likely cause learning performance changes that could make 30 epochs or more necessary for convergence.
 
-The CNN with the current configuration achieved a test accuracy of **92.66%** on the raw data.
+The CNN with the current configuration achieved a test accuracy of 92.66% on the raw data.
 
 <p align="center">
   <img src="images\CNN_acc.png" class="img-responsive" alt="Project"> <img src="images\CNN_loss.png" class="img-responsive" alt="Project">
@@ -168,10 +186,15 @@ The CNN with the current configuration achieved a test accuracy of **92.66%** on
 
 The current results are good overall, and further tuning will be done to optimize the rest of the hyperparameters to improve learning and testing performance.
 
-## 7 Broader Impact
+## 7 Future Directions
+
+Until Midterm, we have evaluated several unsupervised and supervised machine learning algorithms on raw data, and have obtained reasonable classification accuracy on test data for most of the methods. Some of the things that we have not reported are cross-validation and hyperparameter tuning, which we plan to do in the later phase of the project. Also, we have mostly worked on raw data, and from the results that we have, it looks like as a raw data, Goniometer sensors are the most informative. But with proper signal conditioning (such as windowed moving average), we expect that the other sensor data will become important predictors as well. A comparative analysis among the methods will also be included. At this point, we only report test accuracy as the metric, but in future, more ML metrics will be incorporated. One of the interesting things that might go beyond the scope of this project can be post-hoc explanation of the models like MLP and CNN.
+
+## 8 Broader Impact
+
 The broader impact of this project would be future development of robotic assistive devices and active prostheses for targeted rehabilitation methods beyond clinical settings, and improvement of biomimetic controllers that better adapt to terrain conditions (practical scenarios).
 
-## 8 Contributions
+## 9 Contributions
 
 * ```Ian Thomas Cullen```: Data Cleaning, Data Pre-processing (Signal Conditioning using Windowed Moving Average), Feature Engineering (calculating max/min, mean, std from raw features), Video Editing and Presentation for Proposal
 
@@ -181,8 +204,9 @@ The broader impact of this project would be future development of robotic assist
 
 * ```Anupam Golder```: Data Merging (for different environments and different locomotion modes), Data Cleaning, Feature Scoring (Using Minimum Redundancy Maximum Relevance scoring), MLP on raw data, Github Page Editing
 
-## 9 References
+## 10 References
 1. Camargo, J., Ramanathan, A., Flanagan, W., & Young, A. (2021). A comprehensive, open-source dataset of lower limb biomechanics in multiple conditions of stairs, ramps, and level-ground ambulation and transitions. Journal of Biomechanics, 119, 110320.
 2. Kang, I., Molinaro, D. D., Duggal, S., Chen, Y., Kunapuli, P., & Young, A. J. (2021). Real-Time Gait Phase Estimation for Robotic Hip Exoskeleton Control During Multimodal Locomotion. IEEE Robotics and Automation Letters, 6(2), 3491-3497.
 3. Lee, D., Kang, I., Molinaro, D. D., Yu, A., & Young, A. J. (2021). Real-Time User-Independent Slope Prediction Using Deep Learning for Modulation of Robotic Knee Exoskeleton Assistance. IEEE Robotics and Automation Letters, 6(2), 3995-4000.
 4. Spiewak, C. (2018). A Comprehensive Study on EMG Feature Extraction and Classifiers. Open Access Journal of Biomedical Engineering and Biosciences, 1(1).
+5. Loh, W. Y., & Shih, Y. S. (1997). Split selection methods for classification trees. Statistica sinica, 815-840.
