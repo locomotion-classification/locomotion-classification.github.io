@@ -106,7 +106,7 @@ KMeans clustering was also employed after a dimensionality reduction using PCA. 
 Finally, we perform an elbow method analysis of the data (following PCA/dimensionality reduction) to analyze what the optimal number of clusters would be. Here, the find_optimal_num_clusters function implemented in Homework 2 was applied, and the resulting figure is shown below. Using the elbow method, we see that the optimal number of clusters would be approximately 3 to 4. The number clusters chosen for the initial analysis (10) was greater than the value found using the elbow method.
 
 <p align="center">
-  <img src="images\elbow_method.png" class="img-responsive" alt="Project" with="500"> 
+  <img src="images\elbow_method.png" class="img-responsive" alt="Project" width="500"> 
 </p>
 
 ### 6.3 Linear Discriminant Analysis (LDA)
