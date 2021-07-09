@@ -165,23 +165,56 @@ We also report the confusion matrix for this classifier:
 
 #### 6.2.3 MLP
 
-Through manual tuning of hyperparameters, the architecture of MLP has been chosen which achieves reasonable test accuracy without having two complex an architecture. The input layer for this MLP consists of the 44 features from the raw sensor data we mentioned in the above. The MLP architecture in the study contains 3 fully connected layers of 100 neurons each with ReLU activation followed by Batch Normalization. Only the first fully connected layer is followed by a dropout layer (10% probability) to allow for generalization. Also, L2 regularization has been adopted to thwart overfitting. A mini batch size of 2048 samples, and a learning rate of 0.1 have been chosen. For optimization, Stochastic Gradient Descent with Momentum has been chosen. The resulting architecture is shown in the following.
+Through manual tuning of hyperparameters, the architecture of MLP has been chosen which achieves reasonable test accuracy without having two complex an architecture. The input layer for this MLP consists of the 44 features from the raw sensor data we mentioned in the above. The MLP architecture in the study contains 3 fully connected layers of 100 neurons each with ReLU activation followed by Batch Normalization. L2 regularization has been adopted to thwart overfitting and aid generalization. A mini batch size of 256 samples, and a learning rate of 0.0001 have been chosen. For optimization, Adam optimizer has been chosen. The resulting architecture is shown in the following:
 
 <p align="center">
   <img src="images\MLP_arch.svg" class="img-responsive" alt="Project"  width="400" height="400"> 
 </p>
 
-After running for 50 epochs, the aforementioned **MLP** achieves **99.06%** test accuracy on raw data. The training/validation accuracy vs. epoch as well as training/validation loss vs. epoch plots are given below:
+After running for 50 epochs, the aforementioned **MLP** achieves **99.56%** test accuracy on raw data. The training/validation accuracy vs. epoch as well as training/validation loss vs. epoch plots are given below:
 
 <p align="center">
-  <img src="images\MLP_raw_acc_loss_2.svg" class="img-responsive" alt="Project"> 
+  <img src="images\MLP_acc_raw_lr0.0001.png" class="img-responsive" alt="Project"> <img src="images\MLP_loss_raw_lr0.0001.png" class="img-responsive" alt="Project">
 </p>
 
-But **PCA-MLP** (where features have been projected into their principal subspaces) achieves **99.17% test accuracy** with no dimensionality reduction and the same MLP architecture and training options, which is higher than training on just the raw data. Running for a higher number of epochs would translate to higher accuracy, and thorough hyper-parameter tuning is yet to be done, but the result is already quite good. The training/validation accuracy vs. epoch as well as training/validation loss vs. epoch plots for PCA-MLP are given below:
+We also report the following evaluated ML metrics:
+
+| Scoring Metric | Performance Value|
+| ------------- | ------------- |
+| accuracy  | 99.56%  |
+| balanced_accuracy_score | 99.57%  |
+| precision_score_macro | 0.9952  |
+| recall_score_macro | 0.9957  |
+| f1_score_macro | 0.9955 |
+
+The high test accuracy is reflected in the Confusion Matrix plot as well:
+<p align="center">
+  <img src="images\CM_MLP_raw.png" class="img-responsive" alt="Project">
+</p>
+
+**PCA-MLP** (where features have been projected into their principal subspaces) achieves **99.57% test accuracy** with dimensionality reduction (keeping 30 PCA components,as lower number of components reduced test accuracy) and the same MLP architecture and training options, which is similar to training on just the raw data. The training/validation accuracy vs. epoch as well as training/validation loss vs. epoch plots for PCA-MLP are given below:
 
 <p align="center">
-  <img src="images\MLP_PCA_acc_loss_2.svg" class="img-responsive" alt="Project">
+  <img src="images\PCA_MLP_acc_raw_lr0.0001.png" class="img-responsive" alt="Project"> <img src="images\PCA_MLP_loss_raw_lr0.0001.png" class="img-responsive" alt="Project">
 </p>
+
+We also report the following evaluated ML metrics:
+
+| Scoring Metric | Performance Value|
+| ------------- | ------------- |
+| accuracy  | 99.57%  |
+| balanced_accuracy_score | 99.60%  |
+| precision_score_macro | 0.9951  |
+| recall_score_macro | 0.9960  |
+| f1_score_macro | 0.9956 |
+
+The high test accuracy is reflected in the Confusion Matrix plot as well:
+<p align="center">
+  <img src="images\CM_PCA_MLP_raw.png" class="img-responsive" alt="Project">
+</p>
+
+
+Running for a higher number of epochs would translate to higher accuracy, and thorough hyper-parameter tuning is yet to be done, but the result is already quite good. 
  
 
 #### 6.2.4 CNN
@@ -236,9 +269,9 @@ In the following, we present a comparison among the test accuracies obtained fro
 | LDA  | 68.41  |
 | DT  | 96.75  |
 | PCA-LDA  | 68.41  |
-| MLP | 99.06  |
-| PCA-MLP | **99.17**  |
-| CNN| **99.14**  |
+| MLP | **99.56**  |
+| PCA-MLP | **99.57**  |
+| CNN| 99.14  |
 
 
 ## 7 Future Directions
