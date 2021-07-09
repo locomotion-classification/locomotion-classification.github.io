@@ -40,7 +40,7 @@ Moreover, in this study, we consider only **7 locomotion modes**, specifically, 
 
 Data merging process involved concatenating data from different locomotion modes, different sensors, and different acquisition campaigns. As you might notice, the sensor data are sampled at two different sampling frequencies (200 Hz and 1000 Hz). We chose to downsample the high frequency data to align the features. Also, we had to get rid of the time samples that contain sensor data for locomotion modes, such as, 'stand-walk', 'walk-stand' or 'turn', as we do not consider them in this study.
 
-As a result of the choices made in the above and data cleaning, we end up with **```256,085 data samples```**, each containing 44 features for one of the 7 class labels. For supervised classification tasks, we have used 80% of the total data (204,868 samples) for training and validation (80% for training, 20% for validation), and kept aside 20% (51,217 samples) as test data, apart from CNN based classification. For CNN, we chose 70% of the total data, and split the rest in equal halves (15%) for validation and testing, respectively.
+As a result of the choices made in the above and data cleaning, we end up with **```256,085 data samples```**, each containing 44 features for one of the 7 class labels. For supervised classification tasks, we have used 80% of the total data (204,868 samples) for training and validation (80% for training, 20% for validation), and kept aside 20% (51,217 samples) as test data. For methods where a validation set is not required, we use both the training and validation sets to build the models.
 
 ### 4.3 Data Pre-Processing
 
@@ -151,11 +151,17 @@ In the following, we report relevant [ML_metrics](https://scikit-learn.org/stabl
 
 | Scoring Metric | Performance Value|
 | ------------- | ------------- |
-| accuracy  | 96.81%  |
-| balanced_accuracy_score | 96.92%  |
-| precision_score_macro | 0.9686  |
-| recall_score_macro | 0.9692  |
-| f1_score_macro | 0.9689  |
+| accuracy  | 96.75%  |
+| balanced_accuracy_score | 96.93%  |
+| precision_score_macro | 0.9678  |
+| recall_score_macro | 0.9693  |
+| f1_score_macro | 0.9685  |
+
+We also report the confusion matrix for this classifier:
+
+<p align="center">
+  <img src="images\CM_DT_raw.png" class="img-responsive" alt="Project"> 
+</p>
 
 #### 6.2.3 MLP
 
@@ -180,39 +186,59 @@ But **PCA-MLP** (where features have been projected into their principal subspac
 
 #### 6.2.4 CNN
 
-The **CNN** used in this study was configured with 3 convolutional layers and 1 fully connected layer. As our data is 1-dimensional, we employ an 1D-CNN on the data. The architecture chosen is shown in the following:
+The **CNN** used in this study was configured with 3 convolutional layers and 1 fully connected layer. As our data is 1-dimensional, we employ a 1D-CNN on the data. The architecture chosen is shown in the following:
 
 <p align="center">
   <img src="images\CNN_arch2.svg" class="img-responsive" alt="Project" width="600" height="600"> 
 </p>
 
-The hyper-parameters which were modified were tuned using manual search.
+The hyper-parameters were tuned using manual search.
 
-The learning rate was changed from the default of 0.001 due to severe oscillations in the training accuracy and loss throughout training. A value of 0.00001 yielded results with minimal oscillations in the training accuracy and loss in the later epochs and overall smoother learning curves.
-
-The number of epochs was initially chosen to be 100. It was reduced to 30 due to excessive learning time as well as the repeated oscillations in the learning curves due to the previous learning rate. Given the current results with the new learning rate, the model appears to converge at approximately 20 epochs, though further tuning could likely cause learning performance changes that could make 30 epochs or more necessary for convergence.
-
-The **CNN** with the current configuration achieved a **test accuracy of 92.66%** on the raw data. In the following, we provide the training/validation accuracy vs. epoch as well as training/validation loss vs. epoch plots for CNN.
+The learning rate was changed from the default of 0.001 due to severe oscillations in the validation accuracy and loss (as can be noticed from the following figure) throughout training. A value of 0.0001 yielded results with minimal oscillations in the validation accuracy and loss in the later epochs and overall smoother learning curves.
 
 <p align="center">
-  <img src="images\CNN_acc.png" class="img-responsive" alt="Project"> <img src="images\CNN_loss.png" class="img-responsive" alt="Project">
+  <img src="images\CNN_acc_raw_lr0.001.png" class="img-responsive" alt="Project"> <img src="images\CNN_loss_raw_lr0.001.png" class="img-responsive" alt="Project">
+</p>
+
+The number of epochs was initially chosen to be 100. It was reduced to 50 due to excessive learning time. Given the current results with the new learning rate, the model appears to converge at approximately 35 epochs, though further tuning could likely cause learning performance changes that could make 50 epochs or more necessary for convergence.
+
+The **CNN** with the current configuration achieved a **test accuracy of 99.14%** on the raw data. In the following, we provide the training/validation accuracy vs. epoch as well as training/validation loss vs. epoch plots for CNN in the following:
+
+<p align="center">
+  <img src="images\CNN_acc_raw_lr0.0001.png" class="img-responsive" alt="Project"> <img src="images\CNN_loss_raw_lr0.0001.png" class="img-responsive" alt="Project">
+</p>
+
+After performing evauation using ML metrics, for the partitioned training and testing dataset, we report the following performances:
+
+| Scoring Metric | Performance Value|
+| ------------- | ------------- |
+| accuracy  | 99.14%  |
+| balanced_accuracy_score | 99.12%  |
+| precision_score_macro | 0.9906  |
+| recall_score_macro | 0.9912  |
+| f1_score_macro | 0.9909 |
+
+The high test accuracy is reflected in the Confusion Matrix plot as well:
+<p align="center">
+  <img src="images\CM_CNN_raw.png" class="img-responsive" alt="Project">
 </p>
 
 The current results are good overall, and further tuning will be done to optimize the rest of the hyperparameters to improve learning and testing performance.
+
+
 
 ### 6.3 Comparative Analysis
 
 In the following, we present a comparison among the test accuracies obtained from different methods studied so far:
 
-
 | Method | Test Accuracy (%)|
 | ------------- | ------------- |
 | LDA  | 68.41  |
-| DT  | 96.81  |
+| DT  | 96.75  |
 | PCA-LDA  | 68.41  |
 | MLP | 99.06  |
 | PCA-MLP | **99.17**  |
-| CNN| 92.66  |
+| CNN| **99.14**  |
 
 
 ## 7 Future Directions
