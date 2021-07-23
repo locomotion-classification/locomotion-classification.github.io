@@ -163,7 +163,46 @@ We also report the confusion matrix for this classifier:
   <img src="images\CM_DT_raw.png" class="img-responsive" alt="Project"> 
 </p>
 
-#### 6.2.3 MLP
+#### 6.2.3 SVM
+
+In the following, we report relevant ML metrics evaluation for SVM, which we will later extend to the other classification algorithms.
+
+| Scoring Metric | Performance Value|
+| ------------- | ------------- |
+| accuracy  | 93.81%  |
+| balanced_accuracy_score | 93.53%  |
+| precision_score_macro | 0.9397  |
+| recall_score_macro | 0.9353 |
+| f1_score_macro | 0.9374  |
+
+We also report the confusion matrix for this classifier:
+
+<p align="center">
+  <img src="images\CM_SVM_raw.png" class="img-responsive" alt="Project"> 
+</p>
+
+#### 6.2.4 RF
+Test accuracy vs. number of estimators has been evaluated and it saturates after 35 (shown in the following figure). The number of estimators have been taken from the tail end and set to be 40 for the analysis that follows.
+<p align="center">
+  <img src="images\RF_acc_vs_estimator.png" class="img-responsive" alt="Project"> 
+</p>
+In the following, we report relevant ML metrics evaluation for RF, which we will later extend to the other classification algorithms.
+
+| Scoring Metric | Performance Value|
+| ------------- | ------------- |
+| accuracy  | 99.60%  |
+| balanced_accuracy_score | 96.52%  |
+| precision_score_macro | 0.9963  |
+| recall_score_macro | 0.99951 |
+| f1_score_macro | 0.9957  |
+
+We also report the confusion matrix for this classifier:
+
+<p align="center">
+  <img src="images\CM_RF_raw.png" class="img-responsive" alt="Project"> 
+</p>
+
+#### 6.2.5 MLP
 
 Through manual tuning of hyperparameters, the architecture of MLP has been chosen which achieves reasonable test accuracy without having two complex an architecture. The input layer for this MLP consists of the 44 features from the raw sensor data we mentioned in the above. The MLP architecture in the study contains 3 fully connected layers of 100 neurons each with ReLU activation followed by Batch Normalization. L2 regularization has been adopted to thwart overfitting and aid generalization. A mini batch size of 256 samples, and a learning rate of 0.0001 have been chosen. For optimization, Adam optimizer has been chosen. The resulting architecture is shown in the following:
 
@@ -217,7 +256,7 @@ The high test accuracy is reflected in the Confusion Matrix plot as well:
 Running for a higher number of epochs would translate to higher accuracy, and thorough hyper-parameter tuning is yet to be done, but the result is already quite good. 
  
 
-#### 6.2.4 CNN
+#### 6.2.6 CNN
 
 The **CNN** used in this study was configured with 3 convolutional layers and 1 fully connected layer. As our data is 1-dimensional, we employ a 1D-CNN on the data. The architecture chosen is shown in the following:
 
@@ -268,6 +307,8 @@ In the following, we present a comparison among the test accuracies obtained fro
 | ------------- | ------------- |
 | LDA  | 68.41  |
 | DT  | 96.75  |
+| SVM | 93.81  |
+| RF |  **99.60**  |
 | PCA-LDA  | 68.41  |
 | MLP | **99.56**  |
 | PCA-MLP | **99.57**  |
