@@ -52,13 +52,11 @@ Although the data has been appropriately filtered for the specific sensors, we m
   <img src="images\window_even.PNG" class="img-responsive" alt="Project"> 
 </p>
 
-For each time window, 5 sub-features were extracted from each feature: the maximum and minimum values in that window, the mean value of the window, the standard deviation of values in that window, and the final value in the window. The mean and standard deviation were both suggested as good features for use on EMG data [4], while the maximum, minimum, and final data points for each window provide general information about the data in that time interval. These sub-features effectively multiply the number of dimensions of the dataset by 5. While this means that dimensionality reduction will be more intensive, the processed features will end up more informative than the raw data. Moving forward, we will look at implementing other features than the 5 used here, such as root mean square (RMS) or autoregressive coefficients for EMG data. We also will compare the results of using separate windows in sequence with using overlapping windows, as shown in the figure below:
+For each time window, 5 sub-features were extracted from each feature: the maximum and minimum values in that window, the mean value of the window, the standard deviation of values in that window, and the final value in the window. The mean and standard deviation were both suggested as good features for use on EMG data [4], while the maximum, minimum, and final data points for each window provide general information about the data in that time interval. These sub-features effectively multiply the number of dimensions of the dataset by 5. While this means that dimensionality reduction will be more intensive, the processed features will end up more informative than the raw data. However, a preliminary study on the aforementioned processed features did not result in improved accuracy. In a future work, we will look at implementing other features than the 5 used here, such as root mean square (RMS) or autoregressive coefficients for EMG data. We also plan to compare the results of using separate windows in sequence with using overlapping windows, as shown in the figure below:
 
 <p align="center">
   <img src="images\window_overlap.PNG" class="img-responsive" alt="Project"> 
-</p>
-
-We expect that this signal conditioning will improve our classification accuracy in the later part of the project, beyond what we have now, and allow us to have more informative features from EMG, IMU etc.
+</p>.
 
 #### 4.3.2 Feature Engineering
 
@@ -319,11 +317,11 @@ In the following, we present a comparison among the test accuracies obtained fro
 
 ## 7 Conclusions and Future Directions
 
-Up until now, we have evaluated several unsupervised and supervised machine learning algorithms on raw data, and have obtained reasonable classification accuracy on test data for most of the methods. Some of the things that we have not reported are cross-validation and hyperparameter tuning, which we plan to do in the later phase of the project. Also, we have mostly worked on raw data, and from the results that we have, it appears that Goniometer sensors are the most informative. But with proper signal conditioning (such as windowed moving average), we expect that the other sensor data will become important predictors as well. A more detailed comparative analysis among the methods will also be included. At this point, we only report test accuracy as the metric, but in future, more ML metrics will be incorporated. One of the interesting things that might go beyond the scope of this project can be post-hoc explanation of the models like MLP and CNN.
+In this project, we have evaluated several unsupervised and supervised machine learning algorithms on raw data, and have obtained reasonable classification accuracy on test data for most of the methods. We have mostly worked on raw data, and from the results that we have, it appears that Goniometer sensors are the most informative, due to high SNR of the data. But with proper signal conditioning (such as windowed moving average), we expect that the other sensor data will become important predictors as well. From the accuracy metric, we can see that RF, MLP and PCA-MLP achieve the highest test accuracies, while CNN and DT achieve reasonably good accuracies. In this study, we focused on subject specific locomotion mode classification and we think that subject-agnostic classification can be an exiciting future direction.
 
 ## 8 Broader Impact
 
-The broader impact of this project would be future development of robotic assistive devices and active prostheses for targeted rehabilitation methods beyond clinical settings, and improvement of biomimetic controllers that better adapt to terrain conditions (practical scenarios).
+The broader impact of this project would be future development of robotic assistive devices and active prostheses for targeted rehabilitation methods beyond clinical settings, and improvement of biomimetic controllers that better adapt to terrain conditions (practical scenarios). Classification of locomotion modes from instantaneous samples with fast and effective inference may help in developing assistive devices with higher predictive capabilities.
 
 ## 9 Contributions
 
