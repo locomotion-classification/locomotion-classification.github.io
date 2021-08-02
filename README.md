@@ -62,7 +62,7 @@ We expect that this signal conditioning will improve our classification accuracy
 
 #### 4.3.2 Feature Engineering
 
-##### 4.3.2.1 Minimum Relevance Maximum Redundancy (MRMR) Scoring
+##### 4.3.2.1 Minimum Redundancy Maximum Relevance (MRMR) Scoring
 
 MRMR Scoring [6] computes pairwise mutual information of features and mutual information a feature and corresponding label to find an optimal set of features that is mutually and maximally different and can represent the class labels efficiently. The algorithm minimizes the redundancy of a feature set and maximizes the relevance of it to the class labels. All of raw data and labels go into the algorithm which scores the features based on their relevance to class labels. In the following, you can see the scores returned by MRMR algorithm for raw sensor data:
 
@@ -81,7 +81,7 @@ While working on raw data, considering samples from each time point can be insuf
 
 ### 5.2 Supervised Learning Component
 
-We have employed several **Supervised** learning algorithms to perform classification task mentioned above, in particular, **Linear Discriminant Analysis (LDA)**, **Decision Tree (DT)**, **Multi-Layer Perceptron**, and **Convolutional Neural Network (CNN)**. The results for these methods are reported in ```Section 6.2```. Note that, although **MRMR** is a supervised feature ranking algorithm, we have put it under feature engineering as it does not act as a method for classification.
+We have employed several **Supervised** learning algorithms to perform classification task mentioned above, in particular, **Linear Discriminant Analysis (LDA)**, **Decision Tree (DT)**, **Support Vector Machine (SVM)**, **Random Forest (RF)**, **Multi-Layer Perceptron (MLP)**, and **Convolutional Neural Network (CNN)**. The results for these methods are reported in ```Section 6.2```. Note that, although **MRMR** is a supervised feature ranking algorithm, we have put it under feature engineering as it does not act as a method for classification.
 
 ## 6 Results and Discussion
 
@@ -165,7 +165,7 @@ We also report the confusion matrix for this classifier:
 
 #### 6.2.3 SVM
 
-In the following, we report relevant ML metrics evaluation for SVM, which we will later extend to the other classification algorithms.
+SVM classifier has been trained with Radial Basis Function kernel. An exploration of different kernel methods will be explored in a future study. Even with an unoptimized and domain-unadjusted kernel, it achieves reasonable accuracy on test set. In the following, we report relevant ML metrics evaluation for SVM, which we will later extend to the other classification algorithms.
 
 | Scoring Metric | Performance Value|
 | ------------- | ------------- |
@@ -182,11 +182,11 @@ We also report the confusion matrix for this classifier:
 </p>
 
 #### 6.2.4 RF
-Test accuracy vs. number of estimators has been evaluated and it saturates after 35 (shown in the following figure). The number of estimators have been taken from the tail end and set to be 40 for the analysis that follows.
+We have trained a Random forest classifier, which fits a number of decision tree estimators on the dataset and uses averaging to improve the predictive accuracy and reduce over-fitting. Test accuracy vs. number of estimators has been evaluated and it saturates after 35 (shown in the following figure). The optimal number of estimators has been taken from the tail end and set to be 40 for the analysis that follows.
 <p align="center">
   <img src="images\RF_acc_vs_estimator.png" class="img-responsive" alt="Project"> 
 </p>
-In the following, we report relevant ML metrics evaluation for RF, which we will later extend to the other classification algorithms.
+We have evaluated the accuracy of the RF classifier on our test dataset. In the following, we report relevant ML metrics evaluation for RF, which we will later extend to the other classification algorithms.
 
 | Scoring Metric | Performance Value|
 | ------------- | ------------- |
@@ -201,6 +201,8 @@ We also report the confusion matrix for this classifier:
 <p align="center">
   <img src="images\CM_RF_raw.png" class="img-responsive" alt="Project"> 
 </p>
+
+As shown above, RF classifier shows one of the highest accuracies among all the ML methods considered in this study, which can be attributed to its ensembling method, resulting in better generalization.
 
 #### 6.2.5 MLP
 
