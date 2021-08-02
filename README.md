@@ -329,9 +329,9 @@ The broader impact of this project would be future development of robotic assist
 
 * ```Kennedy A Lee```: Convolutional Neural Network (CNN) on raw data, Hyperparameter Tuning
 
-* ```Imran Ali Shah```: Principal Component Analysis (PCA), k-Means Clustering, Video Editing and Presentation for Proposal
+* ```Imran Ali Shah```: Principal Component Analysis (PCA), k-Means Clustering, Naive Bayes (NB), Video Editing and Presentation for Proposal
 
-* ```Anupam Golder```: Data Merging, MRMR Feature Scoring, LDA, DT, MLP/PCA-MLP, Github Page Editing
+* ```Anupam Golder```: Data Merging, MRMR Feature Scoring, LDA, DT, SVM, RF, MLP/PCA-MLP, Github Page Editing
 
 ## 10 References
 1. Camargo, J., Ramanathan, A., Flanagan, W., & Young, A. (2021). A comprehensive, open-source dataset of lower limb biomechanics in multiple conditions of stairs, ramps, and level-ground ambulation and transitions. Journal of Biomechanics, 119, 110320.
