@@ -131,19 +131,21 @@ Finally, we perform an **elbow method** analysis of the data (following PCA/dime
 ### 6.2 Supervised Learning Methods
 
 #### 6.2.1 Naive Bayes Classification
-Naive Bayes classification is the application of Bayes theorem with the assumption that there is conditional independence between every pair of features in a given dataset. In this case, we utilize Gaussian Naive Bayes algorithm for classification, which assumes that the likelihood function of the features is Gaussian, as described below.
+Naive Bayes classification is the application of Bayes theorem with the assumption that there is conditional independence between every pair of features in a given dataset. In this case, we utilize Gaussian Naive Bayes algorithm for classification, which assumes that the likelihood function of the features is Gaussian, as described below; here, the two parameters σ and μ are optimized using the maximum likelihood estimation approach.
 
 <p align="center">
   <img src="images\gaussianNB.JPG" class="img-responsive" alt="Project" width="500"> 
 </p>
 
-#### 6.2.1 LDA
+The processed dataset is split into training and testing data. The size of the test data is defined to 25% of the processed data set, or 64022 points. After performing Gaussian Naive Bayes classification, the number of mislabeled points out of a total of 64022 points was 22459, which results in a test accuracy of **64.92%**. Although this test accuracy may seem low, in relation to our processed dataset it is not too surprising. This is because Gaussian Naive Bayes assumes that the relationship between each of the features is Gaussian in general; however, for our processed dataset, we do not actually know the probabilistic relationship between each of our features and in general they may not be Gaussian (which seems to be the indicataion from the resulting test accuracy).
+
+#### 6.2.2 LDA
 
 In Discriminant Analysis, it is assumed that each class generates features using a multivariate normal distribution, i.e., the model assumes that the data samples have a Gaussian mixture distribution. In Linear Discriminant analysis, the model has the same covariance matrix for each class, with different means. It predicts in a way that minimizes the classification cost defined by posterior probability of classes and cost of misclassification. **LDA** achieves **68.41%** test accuracy on raw data, compared to 14.2% which would be for random class assignments, and thus contains significant results on just raw data.
 
 After performing **PCA**, **LDA** achieves **68.41%** test accuracy with no dimensionality reduction, so, PCA without pruning does not improve accuracy for LDA. Further study needs to be done on LDA after PCA-based dimensionality reduction. 
 
-#### 6.2.2 DT
+#### 6.2.3 DT
 
 Binary Decision Tree for multiclass classification has been fitted to the training data based on the features and class labels. The binary tree creates node splitting for the feature vectors based on impurity or node error. Curvature Test (a statistical test assessing the null hypothesis that two features are unassociated) was chosen so that the decision tree classifier chooses the split predictor that minimizes the p-value of chi-square tests of independence between each feature and the class label [5]. The fitted decision tree achieves **96.81% test accuracy**. Also, an estimation of predictor importance values can be computed by summing changes in the risk due to splits on every feature and dividing the sum by the number of branch nodes, which results in the following graph.
 
@@ -169,7 +171,7 @@ We also report the confusion matrix for this classifier:
   <img src="images\CM_DT_raw.png" class="img-responsive" alt="Project"> 
 </p>
 
-#### 6.2.3 SVM
+#### 6.2.4 SVM
 
 SVM classifier has been trained with Radial Basis Function kernel. An exploration of different kernel methods will be explored in a future study. Even with an unoptimized and domain-unadjusted kernel, it achieves reasonable accuracy on test set. In the following, we report relevant ML metrics evaluation for SVM, which we will later extend to the other classification algorithms.
 
@@ -187,7 +189,7 @@ We also report the confusion matrix for this classifier:
   <img src="images\CM_SVM_raw.png" class="img-responsive" alt="Project"> 
 </p>
 
-#### 6.2.4 RF
+#### 6.2.5 RF
 We have trained a Random forest classifier, which fits a number of decision tree estimators on the dataset and uses averaging to improve the predictive accuracy and reduce over-fitting. Test accuracy vs. number of estimators has been evaluated and it saturates after 35 (shown in the following figure). The optimal number of estimators has been taken from the tail end and set to be 40 for the analysis that follows.
 <p align="center">
   <img src="images\RF_acc_vs_estimator.png" class="img-responsive" alt="Project"> 
@@ -210,7 +212,7 @@ We also report the confusion matrix for this classifier:
 
 As shown above, RF classifier shows one of the highest accuracies among all the ML methods considered in this study, which can be attributed to its ensembling method, resulting in better generalization.
 
-#### 6.2.5 MLP
+#### 6.2.6 MLP
 
 Through manual tuning of hyperparameters, the architecture of MLP has been chosen which achieves reasonable test accuracy without having two complex an architecture. The input layer for this MLP consists of the 44 features from the raw sensor data we mentioned in the above. The MLP architecture in the study contains 3 fully connected layers of 100 neurons each with ReLU activation followed by Batch Normalization. L2 regularization has been adopted to thwart overfitting and aid generalization. A mini batch size of 256 samples, and a learning rate of 0.0001 have been chosen. For optimization, Adam optimizer has been chosen. The resulting architecture is shown in the following:
 
@@ -264,7 +266,7 @@ The high test accuracy is reflected in the Confusion Matrix plot as well:
 Running for a higher number of epochs would translate to higher accuracy, and thorough hyper-parameter tuning is yet to be done, but the result is already quite good. 
  
 
-#### 6.2.6 CNN
+#### 6.2.7 CNN
 
 The **CNN** used in this study was configured with 3 convolutional layers and 1 fully connected layer. As our data is 1-dimensional, we employ a 1D-CNN on the data. The architecture chosen is shown in the following:
 
@@ -313,6 +315,7 @@ In the following, we present a comparison among the test accuracies obtained fro
 
 | Method | Test Accuracy (%)|
 | ------------- | ------------- |
+| GaussianNB | 64.92 |
 | LDA  | 68.41  |
 | DT  | 96.75  |
 | SVM | 93.81  |
