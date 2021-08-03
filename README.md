@@ -129,6 +129,14 @@ Finally, we perform an **elbow method** analysis of the data (following PCA/dime
 </p>
 
 ### 6.2 Supervised Learning Methods
+
+#### 6.2.1 Naive Bayes Classification
+Naive Bayes classification is the application of Bayes theorem with the assumption that there is conditional independence between every pair of features in a given dataset. In this case, we utilize Gaussian Naive Bayes algorithm for classification, which assumes that the likelihood function of the features is Gaussian, as described below.
+
+<p align="center">
+  <img src="images\gaussianNB.png" class="img-responsive" alt="Project" width="500"> 
+</p>
+
 #### 6.2.1 LDA
 
 In Discriminant Analysis, it is assumed that each class generates features using a multivariate normal distribution, i.e., the model assumes that the data samples have a Gaussian mixture distribution. In Linear Discriminant analysis, the model has the same covariance matrix for each class, with different means. It predicts in a way that minimizes the classification cost defined by posterior probability of classes and cost of misclassification. **LDA** achieves **68.41%** test accuracy on raw data, compared to 14.2% which would be for random class assignments, and thus contains significant results on just raw data.
