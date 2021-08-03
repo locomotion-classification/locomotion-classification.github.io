@@ -134,7 +134,7 @@ Finally, we perform an **elbow method** analysis of the data (following PCA/dime
 Naive Bayes classification is the application of Bayes theorem with the assumption that there is conditional independence between every pair of features in a given dataset. In this case, we utilize Gaussian Naive Bayes algorithm for classification, which assumes that the likelihood function of the features is Gaussian, as described below.
 
 <p align="center">
-  <img src="images\gaussianNB.png" class="img-responsive" alt="Project" width="500"> 
+  <img src="images\gaussianNB.JPG" class="img-responsive" alt="Project" width="500"> 
 </p>
 
 #### 6.2.1 LDA
